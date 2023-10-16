@@ -15,6 +15,16 @@ import {
 } from 'wagmi/chains';
 
 import { publicProvider } from 'wagmi/providers/public';
+// import { SidebarContext } from "@/components/sidebarcontext";
+import { createContext, useState, Dispatch, SetStateAction } from 'react';
+
+interface SidebarContextProps {
+  isSidebarVisible: boolean;
+  setSidebarVisible: Dispatch<SetStateAction<boolean>>;
+}
+
+export const SidebarContext = createContext<SidebarContextProps | undefined>(undefined);
+
 
 export interface ProvidersProps {
 	children: React.ReactNode;
@@ -41,6 +51,7 @@ const { chains, publicClient } = configureChains(
   })
 
 export function Providers({ children, themeProps }: ProvidersProps) {
+	const [isSidebarVisible,setSidebarVisible] = useState(false)
 	return (
 		<WagmiConfig config={wagmiConfig}>
         <RainbowKitProvider
@@ -48,7 +59,12 @@ export function Providers({ children, themeProps }: ProvidersProps) {
           modalSize="compact"
           >
 		<NextUIProvider>
-			<NextThemesProvider {...themeProps}>{children}</NextThemesProvider>
+			<NextThemesProvider {...themeProps}>
+			<SidebarContext.Provider value={{isSidebarVisible, setSidebarVisible}}>
+
+				{children}
+			</SidebarContext.Provider>
+				</NextThemesProvider>
 		</NextUIProvider>
 		</RainbowKitProvider>
       </WagmiConfig>

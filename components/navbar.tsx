@@ -1,3 +1,4 @@
+"use client"
 import {
 	Navbar as NextUINavbar,
 	NavbarContent,
@@ -12,27 +13,16 @@ import { ConnectButton } from '@rainbow-me/rainbowkit';
 import NextLink from "next/link";
 
 import { ThemeSwitch } from "@/components/theme-switch";
+import { useContext } from "react";
+import { SidebarContext } from "@/app/providers";
+import { Button } from "@nextui-org/button";
+export function Navbar(){
+const sidebarcontext = useContext(SidebarContext);
+const {isSidebarVisible,setSidebarVisible } = sidebarcontext
 
-export const Navbar = () => {
-const mybots = [
-	{
-		name:"CEO_bot#1725",
-		image:""
-	},
-	{
-		name:"CMO_bot#5625",
-		image:""
-	},
-	{
-		name:"CTO_bot#4725",
-		image:""
-	},
-	{
-		name:"DEV_bot#1325",
-		image:""
-	},
-]
-
+const handleClick= ()=>{
+	console.log(isSidebarVisible)
+}
 	return (
 		<NextUINavbar maxWidth="xl" position="sticky">
 			<NavbarContent className="basis-1/5 sm:basis-full" justify="start">
@@ -49,7 +39,8 @@ const mybots = [
 				justify="end"
 			>
 				<NavbarItem className="hidden sm:flex gap-2">
-
+<Button onClick={()=>	setSidebarVisible(!isSidebarVisible)
+}>My Bots</Button>
 					<ThemeSwitch />
 <ConnectButton/>
 
