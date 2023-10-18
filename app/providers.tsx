@@ -23,7 +23,7 @@ interface SidebarContextProps {
   setSidebarVisible: Dispatch<SetStateAction<boolean>>;
 }
 
-export const SidebarContext = createContext<SidebarContextProps | undefined>(undefined);
+export const SidebarContext = createContext<any>(undefined);
 
 
 export interface ProvidersProps {
