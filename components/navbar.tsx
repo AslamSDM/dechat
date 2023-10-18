@@ -35,16 +35,19 @@ const handleClick= ()=>{
 			</NavbarContent>
 
 			<NavbarContent
-				className="hidden sm:flex basis-1/5 sm:basis-full"
+				className=" sm:flex basis-1/5 sm:basis-full gap-4"
 				justify="end"
 			>
 				<NavbarItem>
 
 					<ThemeSwitch />
 				</NavbarItem>
-				<NavbarItem className="hidden sm:flex gap-2">
+				<NavbarItem>
+
 <Button onClick={()=>	setSidebarVisible(!isSidebarVisible)
 }>My Bots</Button>
+</NavbarItem>
+				<NavbarItem>
 <ConnectButton/>
 
 				</NavbarItem>
