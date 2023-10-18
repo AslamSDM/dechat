@@ -42,9 +42,9 @@ export default function Sidebar() {
           {/* Add your sidebar content here */}
         {
 
-            mybots.map((a:any)=>{
+            mybots.map((a:any,i:number)=>{
                 return(
-                    <Card  isHoverable>
+                    <Card  isHoverable key={i}>
                         <CardBody className="flex items-center">
 
                             <Avatar/>

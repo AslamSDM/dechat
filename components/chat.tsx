@@ -14,9 +14,9 @@ export  function Chat() {
             </CardHeader>
             <CardBody>
                 {
-                    messages.map((a:any)=>{
+                    messages.map((a:any,i:number)=>{
                     return(
-                <Card shadow="md">
+                <Card shadow="md" key={i}>
                     <CardHeader>
                         {a.sender}
                     </CardHeader>
