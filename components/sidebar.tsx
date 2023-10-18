@@ -1,11 +1,8 @@
-import { Chat } from "@/components/chat";
 import { Card, CardBody, CardHeader } from "@nextui-org/card";
 import { Avatar } from "@nextui-org/avatar";
 import { useContext } from "react";
 import { SidebarContext } from "@/app/providers";
-import { Button } from "@nextui-org/button";
 import {AiOutlineClose} from "react-icons/ai"
-import { Fade } from "react-bootstrap";
 export default function Sidebar() {
 	const {isSidebarVisible,setSidebarVisible}= useContext(SidebarContext)
 
