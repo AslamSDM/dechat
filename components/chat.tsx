@@ -8,7 +8,7 @@ export  function Chat() {
         }
     ]
     return(
-        <Card className="w-1/2 mb-6">
+        <Card className="lg:w-1/2 lg:mb-6 md:w-full">
             <CardHeader>
                 <p>Chat Room</p>
             </CardHeader>
