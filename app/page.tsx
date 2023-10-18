@@ -5,6 +5,7 @@ import { Input } from "@nextui-org/input";
 import { useContext } from "react";
 import { SidebarContext } from "./providers";
 import Sidebar from "@/components/sidebar";
+import Company from "@/components/companu";
 export default function Home() {
   const { isSidebarVisible, setSidebarVisible } = useContext(SidebarContext);
   console.log(isSidebarVisible);
@@ -18,7 +19,10 @@ export default function Home() {
               <Input placeholder="Enter your requirement" />
             </CardBody>
           </Card>
+          <div className="flex gap-6">
+<Company/>
             <Chat />
+          </div>
         </div>
       </div>
     </>

@@ -7,7 +7,7 @@
 
 # testing
 /coverage
-
+/ChatDev
 # next.js
 /.next/
 /out/

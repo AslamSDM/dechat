@@ -8,7 +8,7 @@ export  function Chat() {
         }
     ]
     return(
-        <Card>
+        <Card className="w-1/2 mb-6">
             <CardHeader>
                 <p>Chat Room</p>
             </CardHeader>
@@ -16,7 +16,7 @@ export  function Chat() {
                 {
                     messages.map((a:any)=>{
                     return(
-                <Card>
+                <Card shadow="md">
                     <CardHeader>
                         {a.sender}
                     </CardHeader>
