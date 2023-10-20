@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chat Interface</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+        margin: 0;
+        padding: 0;
+    }
+    #chat-container {
+        width: 400px;
+        margin: 50px auto;
+        background-color: #fff;
+        border-radius: 8px;
+        overflow: hidden;
+    }
+    #messages {
+        padding: 20px;
+        height: 300px;
+        overflow-y: scroll;
+    }
+    #input-container {
+        display: flex;
+        padding: 10px;
+    }
+    #input-container input {
+        flex-grow: 1;
+        padding: 10px;
+        border: none;
+        border-radius: 4px;
+    }
+    #input-container button {
+        margin-left: 10px;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        background-color: #008CBA;
+        color: white;
+        cursor: pointer;
+    }
+</style>
+</head>
+<body>
+
+<div id="chat-container">
+    <div id="messages"></div>
+    <div id="input-container">
+        <input type="text" id="user-input" placeholder="Type a message...">
+        <button onclick="sendMessage()">Send</button>
+    </div>
+</div>
+
+<script>
+    let context = [];
+
+    async function sendMessage() {
+        const message = document.getElementById('user-input').value;
+        if (!message) return;
+
+        // Update UI with user message
+        const messagesDiv = document.getElementById('messages');
+        messagesDiv.innerHTML += `<div><b>You:</b> ${message}</div>`;
+        
+        // Clear input
+        document.getElementById('user-input').value = '';
+
+        // Update context with user message
+        context.push({role: 'user', content: message});
+
+        // Send message and context to server
+        const response = await fetch('/get_reply', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                message: message,
+                context: context
+            })
+        });
+
+        const data = await response.json();
+
+        // Update context with agent reply
+        context.push({role: 'assistant', content: data.reply});
+
+        // Update UI with agent reply
+        messagesDiv.innerHTML += `<div><b>Agent:</b> ${data.reply}</div>`;
+        // Auto scroll to bottom
+        messagesDiv.scrollTop = messagesDiv.scrollHeight;
+    }
+</script>
+
+</body>
+</html>
