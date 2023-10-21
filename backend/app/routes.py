@@ -4,6 +4,7 @@ from app.openai_api import get_openai_reply
 import json
 
 @app.route('/')
+
 def index():
     return render_template('index.html')
 

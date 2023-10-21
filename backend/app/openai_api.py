@@ -1,7 +1,7 @@
 import openai
 
 def get_openai_reply(messages):
-    openai.api_key = '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'
+    openai.api_key = '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'
 
     # Construct the prompt
     prompt = [{'role': 'system', 'content': 'You are a helpful assistant.'}]

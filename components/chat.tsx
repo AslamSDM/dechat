@@ -1,12 +1,15 @@
 import {Card,CardBody,CardFooter,CardHeader} from "@nextui-org/card"
 import {Divider} from "@nextui-org/divider"
-export  function Chat() {
-    const messages = [
-        {
-            sender:"CEO",
-            message:"The user needs a fullstack app"
-        }
-    ]
+interface chat{
+    context:any
+}
+export  function Chat({context}:{context:any}) {
+    // const messages = [
+    //     {
+    //         sender:"CEO",
+    //         message:"The user needs a fullstack app"
+    //     }
+    // ]
     return(
         <Card className="lg:w-1/2 lg:mb-6 md:w-full">
             <CardHeader>
@@ -14,15 +17,15 @@ export  function Chat() {
             </CardHeader>
             <CardBody>
                 {
-                    messages.map((a:any,i:number)=>{
+                    context.map((a:any,i:number)=>{
                     return(
                 <Card shadow="md" key={i}>
-                    <CardHeader>
-                        {a.sender}
+                    <CardHeader className={a.role=="assistant"?"justify-start":"justify-end"}>
+                        {a.role}
                     </CardHeader>
                     <Divider/>
                     <CardBody>
-                        {a.message}
+                        {a.content}
                     </CardBody>
                 </Card>
                     )
