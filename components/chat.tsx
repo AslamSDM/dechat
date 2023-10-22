@@ -4,6 +4,7 @@ interface chat{
     context:any
 }
 export  function Chat({context}:{context:any}) {
+    console.log("Context is",context)
     // const messages = [
     //     {
     //         sender:"CEO",
@@ -18,10 +19,14 @@ export  function Chat({context}:{context:any}) {
             <CardBody>
                 {
                     context.map((a:any,i:number)=>{
+                        let role = "User"
+                        if (a.role === "assistant"){
+                            role = "Developer"
+                        }
                     return(
                 <Card shadow="md" key={i}>
                     <CardHeader className={a.role=="assistant"?"justify-start":"justify-end"}>
-                        {a.role}
+                        {role}
                     </CardHeader>
                     <Divider/>
                     <CardBody>

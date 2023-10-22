@@ -8,20 +8,20 @@ export default function Sidebar() {
 
     const mybots = [
         {
-            name:"CEO_bot#1725",
-            image:""
+            name:"Developer",
+            image:"./../4712010.png"
         },
         {
-            name:"CMO_bot#5625",
-            image:""
+            name:"Community manager",
+            image:"./../4712010.png"
         },
         {
-            name:"CTO_bot#4725",
-            image:""
+            name:"Marketer",
+            image:"./../4712010.png"
         },
         {
-            name:"DEV_bot#1325",
-            image:""
+            name:"CEO",
+            image:"./../4712010.png"
         },
     ]
   return (

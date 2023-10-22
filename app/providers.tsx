@@ -11,7 +11,7 @@ import {
 } from '@rainbow-me/rainbowkit';
 import { configureChains, createConfig, WagmiConfig } from 'wagmi';
 import {
-  mainnet,
+  scrollSepolia,polygonZkEvmTestnet
 } from 'wagmi/chains';
 
 import { publicProvider } from 'wagmi/providers/public';
@@ -32,7 +32,7 @@ export interface ProvidersProps {
 }
 
 const { chains, publicClient } = configureChains(
-    [mainnet],
+    [scrollSepolia,polygonZkEvmTestnet],
     [
       publicProvider()
     ]
