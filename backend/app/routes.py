@@ -2,16 +2,22 @@ from app import app
 from flask import request, jsonify, render_template
 from app.openai_api import get_openai_reply
 import json
+from flask_cors import cross_origin
 
-@app.route('/')
 
+@app.route("/")
 def index():
-    return render_template('index.html')
+    return render_template("index.html")
 
-@app.route('/get_reply', methods=['POST'])
+
+@app.route("/api/get_reply", methods=["POST"])
+@cross_origin()
 def get_reply():
-    message = request.json.get('message')
-    context = request.json.get('context')
+    # Get the message and context from the request
+    message = request.json.get("message")
+    context = request.json.get("context")
+
+    print(f"Message: {message}")
 
     # Ensure context is formatted as a list of message dictionaries
     if context:
@@ -19,14 +25,16 @@ def get_reply():
             try:
                 context = json.loads(context)
             except json.JSONDecodeError:
-                context = [{'role': 'user', 'content': context}]
+                context = [{"role": "user", "content": context}]
         elif not isinstance(context, list):
-            context = [{'role': 'user', 'content': str(context)}]
+            context = [{"role": "user", "content": str(context)}]
     else:
         context = []
 
     # Append the new message to the context
-    context.append({'role': 'user', 'content': message})
+    context.append({"role": "user", "content": message})
 
     reply = get_openai_reply(context)
-    return jsonify({'reply': reply})
+
+    # Return the reply in a JSON fomat with the response code of 200 and headers containing the cors policy.
+    return jsonify({"reply": reply})

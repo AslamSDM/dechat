@@ -72,7 +72,7 @@
         context.push({role: 'user', content: message});
 
         // Send message and context to server
-        const response = await fetch('/get_reply', {
+        const response = await fetch('/api/get_reply', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
